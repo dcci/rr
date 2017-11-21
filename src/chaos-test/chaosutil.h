@@ -3,8 +3,10 @@
 #ifndef RR_CHAOSUTIL_H
 #define RR_CHAOSUTIL_H
 
+#ifdef __linux__
 #define _GNU_SOURCE 1
 #define _POSIX_C_SOURCE 2
+#endif
 
 #include <errno.h>
 #include <pthread.h>
@@ -14,7 +16,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/mman.h>
+
+#ifdef __linux__
 #include <sys/user.h>
+#endif
+
+#ifdef __FreeBSD__
+#include <sys/time.h>
+#endif
+
 #include <time.h>
 #include <unistd.h>
 
@@ -78,6 +88,10 @@ inline static double now_double(void) {
   struct timespec ts;
   clock_gettime(CLOCK_MONOTONIC, &ts);
   return ts.tv_sec + ts.tv_nsec / 1000000000.0;
+}
+
+inline static long get_page_size(void) {
+  return sysconf(_SC_PAGE_SIZE);
 }
 
 #endif

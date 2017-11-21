@@ -125,9 +125,9 @@ if(${CAPNP} STREQUAL "CAPNP-NOTFOUND")
   message(FATAL_ERROR "Can't find 'capnp' command; install Capnproto packages? https://github.com/mozilla/rr/wiki/Building-And-Installing#tldr")
 endif()
 
-set(REQUIRED_LIBS
-  capnp
-)
+#set(REQUIRED_LIBS
+#  capnp
+#)
 
 foreach(required_lib ${REQUIRED_LIBS})
   string(TOUPPER ${required_lib} PKG)
@@ -213,10 +213,10 @@ set_source_files_properties(${BROTLI_FILES}
                             PROPERTIES COMPILE_FLAGS ${RR_FLAGS_RELEASE})
 # ==== brotli ====
 
-find_path(SECCOMP NAMES "linux/seccomp.h")
-if(NOT SECCOMP)
-  message(FATAL_ERROR "Couldn't find linux/seccomp.h. You may need to upgrade your kernel.")
-endif()
+#find_path(SECCOMP NAMES "linux/seccomp.h")
+#if(NOT SECCOMP)
+#  message(FATAL_ERROR "Couldn't find linux/seccomp.h. You may need to upgrade your kernel.")
+#endif()
 
 # Check for Python >=2.7 but not Python 3.
 find_package(PythonInterp 2.7 REQUIRED)

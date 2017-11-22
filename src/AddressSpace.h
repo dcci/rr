@@ -4,7 +4,11 @@
 #define RR_ADDRESS_SPACE_H_
 
 #include <inttypes.h>
+
+#ifdef __linux__
 #include <linux/kdev_t.h>
+#endif
+
 #include <sys/mman.h>
 #include <sys/stat.h>
 

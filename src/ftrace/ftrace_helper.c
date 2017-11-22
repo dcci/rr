@@ -72,7 +72,6 @@ static void drop_sig(__attribute__((unused)) int sig) {}
 
 static int out_fd;
 static void* do_echo(void* arg) {
-#if 0
   int fd = *(int*)arg;
   int pipe_fds[2];
   ssize_t size;
@@ -93,7 +92,6 @@ static void* do_echo(void* arg) {
     }
     check(ret2 == ret);
   }
-#endif
 }
 
 static void chdir_to_tracing(void) {

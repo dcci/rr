@@ -3,8 +3,10 @@
 #ifndef RRUTIL_H
 #define RRUTIL_H
 
+#ifdef __linux__
 #define _GNU_SOURCE 1
 #define _POSIX_C_SOURCE 2
+#endif
 
 /* btrfs needs NULL but doesn't #include it */
 #include <stdlib.h>
@@ -146,6 +148,10 @@
 #ifdef __linux__
 #include <sys/xattr.h>
 #include <syscall.h>
+#endif
+
+#ifdef __FreeBSD__
+#include <sys/syscall.h>
 #endif
 
 #include <termios.h>

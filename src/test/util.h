@@ -9,10 +9,16 @@
 /* btrfs needs NULL but doesn't #include it */
 #include <stdlib.h>
 /* need to include sys/mount.h before linux/fs.h */
+#ifdef __linux__
 #include <sys/mount.h>
+#endif
 
 #include <arpa/inet.h>
+
+#ifdef __linux__
 #include <asm/prctl.h>
+#endif
+
 #include <assert.h>
 #include <ctype.h>
 #include <dirent.h>
@@ -22,6 +28,8 @@
 #include <fcntl.h>
 #include <grp.h>
 #include <inttypes.h>
+
+#ifdef __linux__
 #include <linux/aio_abi.h>
 #include <linux/audit.h>
 #include <linux/capability.h>
@@ -42,56 +50,104 @@
 #include <linux/unistd.h>
 #include <linux/videodev2.h>
 #include <linux/wireless.h>
+#endif
+
 #include <mqueue.h>
 #include <poll.h>
 #include <pthread.h>
+
+#ifdef __linux__
 #include <pty.h>
+#endif
+
 #include <pwd.h>
 #include <sched.h>
 #include <signal.h>
+
+#ifdef __linux__
 #include <sound/asound.h>
+#endif
+
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+
+#ifdef __linux__
 #include <sys/epoll.h>
+#endif
+
+#ifdef __linux__
 #include <sys/eventfd.h>
 #include <sys/fanotify.h>
 #include <sys/file.h>
 #include <sys/fsuid.h>
 #include <sys/inotify.h>
+#endif
+
 #include <sys/ioctl.h>
 #include <sys/ipc.h>
 #include <sys/mman.h>
-#include <sys/mount.h>
 #include <sys/msg.h>
+
+#ifdef __linux__
 #include <sys/prctl.h>
 #include <sys/ptrace.h>
 #include <sys/quota.h>
+#endif
+
 #include <sys/resource.h>
 #include <sys/select.h>
 #include <sys/sem.h>
+
+#ifdef __linux__
 #include <sys/sendfile.h>
+#endif
+
 #include <sys/shm.h>
+
+#ifdef __linux__
 #include <sys/signalfd.h>
+#endif
+
 #include <sys/socket.h>
 #include <sys/stat.h>
+
+#ifdef __linux__
 #include <sys/sysinfo.h>
 #include <sys/sysmacros.h>
+#endif
+
 #include <sys/time.h>
+
+#ifdef __linux__
 #include <sys/timerfd.h>
+#endif
+
 #include <sys/times.h>
 #include <sys/types.h>
 #include <sys/ucontext.h>
 #include <sys/uio.h>
 #include <sys/un.h>
+
+#ifdef __linux__
 #include <sys/user.h>
+#endif
+
 #include <sys/utsname.h>
+
+#ifdef __linux__
 #include <sys/vfs.h>
+#endif
+
 #include <sys/wait.h>
+
+#ifdef __linux__
 #include <sys/xattr.h>
 #include <syscall.h>
+#endif
+
 #include <termios.h>
 #include <time.h>
 #include <ucontext.h>

@@ -1177,7 +1177,8 @@ if(BUILD_TESTS)
     set_source_files_properties(src/test/${test}.c
                                 PROPERTIES COMPILE_FLAGS ${RR_TEST_FLAGS})
     add_dependencies(${test} Generated)
-    target_link_libraries(${test} -lrt -ldl)
+    # FreeBSD has no -ldl.
+    target_link_libraries(${test} -lrt)
   endforeach(test)
 
   # Test disabled because it requires libuvc to be built and installed, and a

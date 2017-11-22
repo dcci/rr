@@ -229,7 +229,19 @@ inline static int check_cond(int cond) {
 /**
  * Return the calling task's id.
  */
-inline static pid_t sys_gettid(void) { return syscall(SYS_gettid); }
+// XXX: FreeBSD has no gettid.
+#ifdef __FreeBSD__
+#include <sys/thr.h>
+#endif
+inline static pid_t sys_gettid(void) {
+#ifdef __FreeBSD__
+  long lwpid;
+  thr_self(&lwpid);
+  return (unsigned)lwpid;
+#else
+  return syscall(SYS_gettid);
+#endif
+}
 
 /**
  * Ensure that |len| bytes of |buf| are the same across recording and

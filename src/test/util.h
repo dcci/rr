@@ -321,7 +321,7 @@ typedef void (*maps_callback)(uint64_t env, char* name,
 inline static void iterate_maps(uint64_t env, maps_callback callback,
                                 FILE* maps_file) {
   while (!feof(maps_file)) {
-    char line[PATH_MAX * 2];
+    char line[512]; // XXX: FreeBSD has no PATH_MAX
     if (!fgets(line, sizeof(line), maps_file)) {
       break;
     }
